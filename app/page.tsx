@@ -10,7 +10,7 @@ export default function HomePage() {
   const [animatedText, setAnimatedText] = useState("")
 
   const fullText =
-    "¿Te cuesta dar presentaciones en inglés? Nuestra IA clona tu voz en español y te devuelve tu discurso con la pronunciación perfecta en inglés. Mantén tu identidad vocal mientras suenas como un nativo."
+    "Hacer un pitch en inglés es un desafío cuando no es tu idioma nativo. Descubrí y practica tu pronunciación perfecta con la ayuda de la IA!"
 
   useEffect(() => {
     let index = 0
@@ -32,7 +32,7 @@ export default function HomePage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-            Domina tu <span className="text-primary">pronunciación en inglés</span> con tu propia voz
+            Domina tu <span className="text-primary">pitch en inglés</span> sin perder tu voz
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty min-h-[4rem]">
             {animatedText}
@@ -61,7 +61,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-lg font-semibold mb-2">IA Avanzada</h3>
               <p className="text-muted-foreground text-sm">
-                Utilizamos tecnología de ElevenLabs para generar pronunciación perfecta.
+                Escucha tu pitch en inglés con pronunciación nativa usando tu propia voz.
               </p>
             </CardContent>
           </Card>
@@ -71,9 +71,9 @@ export default function HomePage() {
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Volume2 className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Resultado perfecto</h3>
+              <h3 className="text-lg font-semibold mb-2">Practicá</h3>
               <p className="text-muted-foreground text-sm">
-                Escucha tu discurso en inglés con pronunciación nativa usando tu propia voz.
+                Compará tu pronunciación con la generada con IA y mejorala.
               </p>
             </CardContent>
           </Card>
@@ -84,7 +84,7 @@ export default function HomePage() {
           <Card className="max-w-2xl mx-auto">
             <CardContent className="p-8">
               <h2 className="text-2xl font-semibold mb-4">
-                ¿Listo para mejorar tu pronunciación?
+                LLevá tu pitch al proximo nivel 🚀
               </h2>
               <p className="text-muted-foreground mb-6">
                 Prueba nuestra herramienta de clonación de voz y mejora tu pronunciación en inglés 
@@ -110,14 +110,14 @@ export default function HomePage() {
         {/* How it works */}
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-center mb-8">¿Cómo funciona?</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-semibold">
                 1
               </div>
               <h3 className="font-semibold mb-2">Ingresa tu texto</h3>
               <p className="text-muted-foreground text-sm">
-                Pega tu discurso o presentación en inglés que quieres practicar.
+                Pegá tu discurso o presentación en inglés que quieres practicar.
               </p>
             </div>
             
@@ -137,7 +137,17 @@ export default function HomePage() {
               </div>
               <h3 className="font-semibold mb-2">Escucha el resultado</h3>
               <p className="text-muted-foreground text-sm">
-                Recibe tu texto en inglés con pronunciación perfecta usando tu propia voz.
+                Recibí tu texto en inglés con pronunciación perfecta usando tu propia voz.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-semibold">
+                4
+              </div>
+              <h3 className="font-semibold mb-2">Escucha el resultado</h3>
+              <p className="text-muted-foreground text-sm">
+                Escuchá la version nativa y practicá las oraciones que quieras.
               </p>
             </div>
           </div>
