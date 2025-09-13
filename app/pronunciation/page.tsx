@@ -110,11 +110,25 @@ export default function PronunciationApp() {
   }
 
   const handlePlayRecording = () => {
+    if (!audioRecorderRef.current?.recordedFile) return
+    
     setIsPlayingRecording(true)
-    // Simulate playing the user's recording
-    setTimeout(() => {
+    
+    // Create URL from the recorded file and play it
+    const audioUrl = URL.createObjectURL(audioRecorderRef.current.recordedFile)
+    const audio = new Audio(audioUrl)
+    
+    audio.onended = () => {
       setIsPlayingRecording(false)
-    }, 3000)
+      URL.revokeObjectURL(audioUrl) // Clean up
+    }
+    
+    audio.onerror = () => {
+      setIsPlayingRecording(false)
+      URL.revokeObjectURL(audioUrl)
+    }
+    
+    audio.play()
   }
 
   const storyText = `
