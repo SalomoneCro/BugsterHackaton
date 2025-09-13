@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mic, Play, Volume2, Square, ArrowRight, Loader2, Home, ArrowLeft, Download, BookOpen } from "lucide-react"
+import { Mic, Play, Volume2, Square, ArrowRight, Loader2, Home, ArrowLeft, Download, BookOpen, StopCircle } from "lucide-react"
 import { AudioRecorder, cloneVoiceFromFile, convertTextToSpeech } from "@/lib/elevenlabs-client"
 import Link from "next/link"
 
@@ -21,6 +21,7 @@ export default function PronunciationApp() {
   const [voiceId, setVoiceId] = useState<string | null>(null)
   const [generatedAudioUrl, setGeneratedAudioUrl] = useState<string | null>(null)
   const [savedAudioKey, setSavedAudioKey] = useState<string | null>(null)
+  const [isPlayingAI, setIsPlayingAI] = useState(false)
   
   const audioRecorderRef = useRef<AudioRecorder | null>(null)
   const audioPlayerRef = useRef<HTMLAudioElement | null>(null)
@@ -104,6 +105,10 @@ export default function PronunciationApp() {
         
         if (audioUrl) {
           setGeneratedAudioUrl(audioUrl)
+          
+          // Automatically save to localStorage when audio is generated
+          saveAudioToLocalStorage(audioUrl)
+          
           setCurrentStep("playback")
         }
       }
@@ -117,16 +122,29 @@ export default function PronunciationApp() {
   const handlePlayback = () => {
     if (generatedAudioUrl && audioPlayerRef.current) {
       audioPlayerRef.current.src = generatedAudioUrl
+      
+      // Set up event listeners
+      audioPlayerRef.current.onplay = () => setIsPlayingAI(true)
+      audioPlayerRef.current.onpause = () => setIsPlayingAI(false)
+      audioPlayerRef.current.onended = () => setIsPlayingAI(false)
+      audioPlayerRef.current.onerror = () => setIsPlayingAI(false)
+      
       audioPlayerRef.current.play()
     }
   }
 
-  const downloadAudio = async () => {
-    if (!generatedAudioUrl) return
+  const handleStopAI = () => {
+    if (audioPlayerRef.current) {
+      audioPlayerRef.current.pause()
+      audioPlayerRef.current.currentTime = 0
+      setIsPlayingAI(false)
+    }
+  }
 
+  const saveAudioToLocalStorage = async (audioUrl: string) => {
     try {
       // Fetch the audio blob
-      const response = await fetch(generatedAudioUrl)
+      const response = await fetch(audioUrl)
       const audioBlob = await response.blob()
       
       // Convert blob to base64 for localStorage
@@ -145,20 +163,24 @@ export default function PronunciationApp() {
         
         localStorage.setItem(audioKey, JSON.stringify(audioData))
         setSavedAudioKey(audioKey)
-        
-        // Also trigger download
-        const link = document.createElement('a')
-        link.href = generatedAudioUrl
-        link.download = `pronunciation-${Date.now()}.mp3`
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
       }
       
       reader.readAsDataURL(audioBlob)
     } catch (error) {
-      console.error('Error downloading audio:', error)
+      console.error('Error saving audio to localStorage:', error)
     }
+  }
+
+  const downloadAudio = () => {
+    if (!generatedAudioUrl) return
+
+    // Only trigger file download
+    const link = document.createElement('a')
+    link.href = generatedAudioUrl
+    link.download = `pronunciation-${Date.now()}.mp3`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const handlePlayRecording = () => {
@@ -477,10 +499,28 @@ export default function PronunciationApp() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                    <Button onClick={handlePlayback} size="lg" className="px-8 text-primary-foreground">
-                      <Play className="w-5 h-5 mr-2" />
-                      Reproducir pronunciación
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button 
+                        onClick={handlePlayback} 
+                        size="lg" 
+                        className="px-6 text-primary-foreground"
+                        disabled={isPlayingAI}
+                      >
+                        <Play className="w-5 h-5 mr-2" />
+                        {isPlayingAI ? "Reproduciendo..." : "Reproducir"}
+                      </Button>
+                      
+                      <Button 
+                        onClick={handleStopAI} 
+                        size="lg" 
+                        variant="outline"
+                        className="px-6"
+                        disabled={!isPlayingAI}
+                      >
+                        <StopCircle className="w-5 h-5 mr-2" />
+                        Detener
+                      </Button>
+                    </div>
                     
                     <Button onClick={downloadAudio} variant="outline" size="lg" className="px-8">
                       <Download className="w-5 h-5 mr-2" />
