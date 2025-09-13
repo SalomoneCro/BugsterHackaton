@@ -32,7 +32,7 @@ export default function HomePage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-            Domina tu <span className="text-primary">pitch en inglés</span> sin perder tu voz
+            Dominá tu <span className="text-primary">pitch en inglés</span> sin perder tu voz
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty min-h-[4rem]">
             {animatedText}
