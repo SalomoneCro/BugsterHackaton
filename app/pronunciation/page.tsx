@@ -240,7 +240,7 @@ export default function PronunciationApp() {
 
                 <div className="bg-[#F1F5F9] p-6 rounded-lg">
                   <h3 className="text-lg font-semibold text-foreground mb-4">Texto para grabar:</h3>
-                  <p className="text-foreground leading-relaxed text-2xl font-mono">{storyText}</p>
+                  <p className="text-foreground leading-relaxed text-lg font-mono">{storyText}</p>
                 </div>
 
                 {/* <div className="space-y-4">
