@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mic, Play, Volume2, Square, ArrowRight, Loader2, Home, ArrowLeft, Download, BookOpen, StopCircle } from "lucide-react"
+import { Mic, Play, Volume2, Square, ArrowRight, Loader2, Home, ArrowLeft, Download, BookOpen, StopCircle, RefreshCcw } from "lucide-react"
 import { AudioRecorder, cloneVoiceFromFile, convertTextToSpeech } from "@/lib/elevenlabs-client"
 import Link from "next/link"
 
@@ -203,6 +203,22 @@ export default function PronunciationApp() {
     }
     
     audio.play()
+  }
+
+  const handleResetRecording = () => {
+    setIsRecording(false)
+    setHasRecording(false)
+    setIsPlayingRecording(false)
+    setVoiceId(null)
+    setGeneratedAudioUrl(null)
+    setCurrentStep("recording")
+
+    if (audioRecorderRef.current) {
+      audioRecorderRef.current.recordedFile = null
+      if (audioRecorderRef.current.stopRecording) {
+        audioRecorderRef.current.stopRecording()
+      }
+    }
   }
 
   const storyText = `
@@ -440,16 +456,28 @@ export default function PronunciationApp() {
                     )}
 
                     {hasRecording && !isRecording && (
-                      <Button
-                        onClick={handlePlayRecording}
-                        size="lg"
-                        variant="outline"
-                        className="px-8 bg-transparent"
-                        disabled={isPlayingRecording}
-                      >
-                        <Play className="w-5 h-5 mr-2" />
-                        {isPlayingRecording ? "Reproduciendo..." : "Escuchar mi grabación"}
-                      </Button>
+                      <>
+                        <Button
+                          onClick={handlePlayRecording}
+                          size="lg"
+                          variant="outline"
+                          className="px-8 bg-transparent"
+                          disabled={isPlayingRecording}
+                          >
+                          <Play className="w-5 h-5 mr-2" />
+                          {isPlayingRecording ? "Reproduciendo..." : "Escuchar mi grabación"}
+                        </Button>
+
+                        <Button
+                          onClick={handleResetRecording}
+                          size="lg"
+                          variant="default"
+                          className="px-8 text-primary-foreground bg-primary hover:bg-primary/90"
+                        >
+                          <RefreshCcw className="w-5 h-5 mr-2" />
+                          Reiniciar grabación
+                        </Button>
+                      </>
                     )}
 
                     {isRecording && (
