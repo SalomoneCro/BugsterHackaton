@@ -148,9 +148,9 @@ export default function PronunciationApp() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
+      <div className="container mx-auto px-4 py-8">
         {/* Navigation */}
-        <div className="mb-8">
+        <div className="mb-6">
           <Link href="/">
             <Button variant="outline" size="sm">
               <Home className="w-4 h-4 mr-2" />
@@ -159,19 +159,110 @@ export default function PronunciationApp() {
           </Link>
         </div>
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-            Domina tu <span className="text-primary">pronunciación en inglés</span> con tu propia voz
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty min-h-[4rem]">
-            {animatedText}
-            <span className="animate-pulse">|</span>
-          </p>
-        </div>
+        {/* Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Left Side - Information */}
+          <div className="space-y-8">
+            {currentStep === "recording" ? (
+              /* Recording Step Content */
+              <div className="space-y-6">
+                <div>
+                  <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 text-balance">
+                    Graba tu voz para <span className="text-primary">clonar tu identidad vocal</span>
+                  </h1>
+                  <p className="text-lg text-muted-foreground text-pretty">
+                    Lee el siguiente texto en voz alta para que podamos clonar tu voz y crear tu pronunciación perfecta en inglés.
+                  </p>
+                </div>
 
-        {/* Main Content Area */}
-        <div className="relative">
+                <div className="bg-muted p-6 rounded-lg">
+                  <h3 className="text-lg font-semibold text-foreground mb-4">Texto para grabar:</h3>
+                  <p className="text-foreground leading-relaxed text-lg">{storyText}</p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-foreground">Instrucciones:</h3>
+                  <div className="space-y-2">
+                    <div className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground">Lee el texto de forma natural y clara</p>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground">Habla a un ritmo normal, no muy rápido</p>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground">Asegúrate de estar en un lugar silencioso</p>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground">La grabación debe durar al menos 30 segundos</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* Default Content (Input and Playback steps) */
+              <>
+                {/* Header */}
+                <div>
+                  <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 text-balance">
+                    Domina tu <span className="text-primary">pronunciación en inglés</span> con tu propia voz
+                  </h1>
+                  <p className="text-lg text-muted-foreground text-pretty min-h-[4rem]">
+                    {animatedText}
+                    <span className="animate-pulse">|</span>
+                  </p>
+                </div>
+
+                {/* How it works */}
+                <div className="space-y-4">
+                  <h2 className="text-xl font-semibold text-foreground">¿Cómo funciona?</h2>
+                  <div className="space-y-3">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">1</div>
+                      <p className="text-muted-foreground">Escribe o pega tu discurso en inglés</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">2</div>
+                      <p className="text-muted-foreground">Graba tu voz leyendo una historia en español</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">3</div>
+                      <p className="text-muted-foreground">Escucha tu discurso con pronunciación perfecta</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Benefits */}
+                <div className="space-y-4">
+                  <h2 className="text-xl font-semibold text-foreground">Beneficios</h2>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <p className="text-muted-foreground">Mantén tu identidad vocal única</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <p className="text-muted-foreground">Pronunciación nativa en inglés</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <p className="text-muted-foreground">Ideal para presentaciones profesionales</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <p className="text-muted-foreground">Tecnología de vanguardia con ElevenLabs</p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Right Side - App */}
+          <div className="relative">
           {/* Step 1: Text Input */}
           <div
             className={`transition-all duration-500 ${
@@ -234,15 +325,11 @@ export default function PronunciationApp() {
 
                   <div className="text-center">
                     <h2 className="text-2xl font-semibold text-foreground mb-4">
-                      Ahora graba tu voz leyendo esta historia
+                      Graba tu voz
                     </h2>
                     <p className="text-muted-foreground mb-6">
-                      Lee el siguiente texto en voz alta para que podamos clonar tu voz:
+                      Usa los controles de abajo para comenzar la grabación
                     </p>
-                  </div>
-
-                  <div className="bg-muted p-6 rounded-lg">
-                    <p className="text-foreground leading-relaxed text-lg">{storyText}</p>
                   </div>
 
                   <div className="flex flex-col items-center space-y-4">
@@ -381,23 +468,30 @@ export default function PronunciationApp() {
               </CardContent>
             </Card>
           </div>
-        </div>
 
-        {/* Progress Indicator */}
-        <div className="flex justify-center mt-12">
-          <div className="flex space-x-4">
-            {(["input", "recording", "playback"] as Step[]).map((step, index) => (
-              <div
-                key={step}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  currentStep === step
-                    ? "bg-primary"
-                    : (["input", "recording", "playback"] as Step[]).indexOf(currentStep) > index
-                      ? "bg-secondary"
-                      : "bg-border"
-                }`}
-              />
-            ))}
+          {/* Progress Indicator */}
+          <div className="mt-8 space-y-4">
+            <h3 className="text-lg font-semibold text-foreground">Progreso</h3>
+            <div className="flex space-x-4">
+              {(["input", "recording", "playback"] as Step[]).map((step, index) => (
+                <div
+                  key={step}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    currentStep === step
+                      ? "bg-primary"
+                      : (["input", "recording", "playback"] as Step[]).indexOf(currentStep) > index
+                        ? "bg-secondary"
+                        : "bg-border"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              {currentStep === "input" && "Paso 1: Ingresa tu texto"}
+              {currentStep === "recording" && "Paso 2: Graba tu voz"}
+              {currentStep === "playback" && "Paso 3: Escucha el resultado"}
+            </div>
+          </div>
           </div>
         </div>
       </div>
