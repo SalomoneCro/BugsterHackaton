@@ -206,7 +206,7 @@ export default function PronunciationApp() {
   }
 
   const storyText = `
-    Hola hola, probando si funciona la grabación. Aca estamos en la hackathon de Bugster. El flujo está validado, ahora vamos a ver si realmente la integración funciona.
+    Había una vez un emprendedor que soñaba con conquistar Silicon Valley. Preparó su pitch en inglés, pero los inversores entendieron cualquier cosa: uno pensó que vendía helados, otro que ofrecía seguros de vida. Desanimado, descubrió esta herramienta, practicó su pronunciación y volvió con confianza. Esta vez, todos entendieron su idea y levantó inversión. Ahora sueña con ser el próximo unicornio… pero haciendose entender.
   `
 
   return (
