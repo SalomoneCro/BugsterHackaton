@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mic, Play, Volume2, Square, ArrowRight, Loader2, Home } from "lucide-react"
+import { Mic, Play, Volume2, Square, ArrowRight, Loader2, Home, ArrowLeft } from "lucide-react"
 import { AudioRecorder, cloneVoiceFromFile, convertTextToSpeech } from "@/lib/elevenlabs-client"
 import Link from "next/link"
 
@@ -44,6 +44,17 @@ export default function PronunciationApp() {
   const handleSubmitPitch = () => {
     if (pitchText.trim()) {
       setCurrentStep("recording")
+    }
+  }
+
+  const handleGoBackToInput = () => {
+    setCurrentStep("input")
+    setHasRecording(false)
+    setIsRecording(false)
+    setIsPlayingRecording(false)
+    // Reset audio recorder
+    if (audioRecorderRef.current) {
+      audioRecorderRef.current.recordedFile = null
     }
   }
 
@@ -190,7 +201,7 @@ export default function PronunciationApp() {
                     size="lg"
                     className="w-full md:w-auto px-8"
                   >
-                    Enviar
+                    Continuar
                   </Button>
                 </div>
               </CardContent>
@@ -208,6 +219,19 @@ export default function PronunciationApp() {
             <Card className="w-full">
               <CardContent className="p-8">
                 <div className="space-y-6">
+                  {/* Go back button */}
+                  <div className="flex justify-start">
+                    <Button
+                      onClick={handleGoBackToInput}
+                      variant="outline"
+                      size="sm"
+                      className="mb-4"
+                    >
+                      <ArrowLeft className="w-4 h-4 mr-2" />
+                      Volver al texto
+                    </Button>
+                  </div>
+
                   <div className="text-center">
                     <h2 className="text-2xl font-semibold text-foreground mb-4">
                       Ahora graba tu voz leyendo esta historia
