@@ -79,32 +79,44 @@ export default function HomePage() {
           </Card>
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center">
-          <Card className="max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-semibold mb-4">
-                LLevá tu pitch al proximo nivel 🚀
-              </h2>
-              <p className="text-muted-foreground mb-6">
-                Prueba nuestra herramienta de clonación de voz y mejora tu pronunciación en inglés 
-                manteniendo tu identidad vocal única.
-              </p>
-              
-              <Link href="/pronunciation">
-                <Button size="lg" className="px-8">
-                  <Play className="w-5 h-5 mr-2" />
-                  Comenzar ahora
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
+        {/* Hero Image and CTA Section */}
+        <div className="grid lg:grid-cols-[3fr_7fr] gap-8 items-center mb-12">
+          {/* Hero Image */}
+          <div className="text-center lg:text-left">
+            <img 
+              src="/landing.jpeg" 
+              alt="Persona trabajando en laptop con burbuja de diálogo" 
+              className="max-w-xs mx-auto lg:mx-0 rounded-lg"
+            />
+          </div>
 
-              <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground mt-4">
-                <Volume2 className="w-4 h-4" />
-                <span>Powered by ElevenLabs</span>
-              </div>
-            </CardContent>
-          </Card>
+          {/* CTA Section */}
+          <div className="text-center lg:text-left">
+            <Card className="w-full mx-auto lg:mx-0">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-semibold mb-4">
+                  Llevá tu pitch al proximo nivel 🚀
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  Prueba nuestra herramienta de clonación de voz y mejora tu pronunciación en inglés 
+                  manteniendo tu identidad vocal única.
+                </p>
+                
+                <Link href="/pronunciation">
+                  <Button size="lg" className="px-8">
+                    <Play className="w-5 h-5 mr-2" />
+                    Comenzar ahora
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+
+                <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm text-muted-foreground mt-4">
+                  <Volume2 className="w-4 h-4" />
+                  <span>Powered by ElevenLabs</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* How it works */}
