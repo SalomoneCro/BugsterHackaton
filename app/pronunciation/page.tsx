@@ -238,12 +238,12 @@ export default function PronunciationApp() {
                   </p>
                 </div>
 
-                <div className="bg-muted p-6 rounded-lg">
+                <div className="bg-[#F1F5F9] p-6 rounded-lg">
                   <h3 className="text-lg font-semibold text-foreground mb-4">Texto para grabar:</h3>
-                  <p className="text-foreground leading-relaxed text-lg">{storyText}</p>
+                  <p className="text-foreground leading-relaxed text-2xl font-mono">{storyText}</p>
                 </div>
 
-                <div className="space-y-4">
+                {/* <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-foreground">Instrucciones:</h3>
                   <div className="space-y-2">
                     <div className="flex items-start space-x-2">
@@ -263,7 +263,7 @@ export default function PronunciationApp() {
                       <p className="text-muted-foreground">La grabación debe durar al menos 30 segundos</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             ) : (
               /* Default Content (Input and Playback steps) */
@@ -273,16 +273,16 @@ export default function PronunciationApp() {
                   <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 text-balance">
                     Domina tu <span className="text-primary">pronunciación en inglés</span> con tu propia voz
                   </h1>
-                  <p className="text-lg text-muted-foreground text-pretty min-h-[4rem]">
+                  {/* <p className="text-lg text-muted-foreground text-pretty min-h-[4rem]">
                     {animatedText}
                     <span className="animate-pulse">|</span>
-                  </p>
+                  </p> */}
                 </div>
 
                 {/* How it works */}
                 <div className="space-y-4">
                   <h2 className="text-xl font-semibold text-foreground">¿Cómo funciona?</h2>
-                  <div className="space-y-3">
+                  <div className="space-y-3 text-lg">
                     <div className="flex items-start space-x-3">
                       <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">1</div>
                       <p className="text-muted-foreground">Escribe o pega tu discurso en inglés</p>
@@ -299,7 +299,7 @@ export default function PronunciationApp() {
                 </div>
 
                 {/* Benefits */}
-                <div className="space-y-4">
+                {/* <div className="space-y-4">
                   <h2 className="text-xl font-semibold text-foreground">Beneficios</h2>
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
@@ -319,7 +319,7 @@ export default function PronunciationApp() {
                       <p className="text-muted-foreground">Tecnología de vanguardia con ElevenLabs</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </>
             )}
           </div>
@@ -349,14 +349,16 @@ export default function PronunciationApp() {
                       className="min-h-[200px] text-base resize-none"
                     />
                   </div>
-                  <Button
-                    onClick={handleSubmitPitch}
-                    disabled={!pitchText.trim()}
-                    size="lg"
-                    className="w-full md:w-auto px-8"
-                  >
-                    Continuar
-                  </Button>
+                  <div className="flex justify-end">
+                    <Button
+                      onClick={handleSubmitPitch}
+                      disabled={!pitchText.trim()}
+                      size="lg"
+                      className="w-full md:w-auto px-8"
+                    >
+                      Continuar
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>

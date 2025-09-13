@@ -10,19 +10,19 @@
   --card-foreground: oklch(0.35 0 0); /* Dark gray text for cards */
   --popover: oklch(1 0 0); /* White popover background */
   --popover-foreground: oklch(0.35 0 0); /* Dark gray popover text */
-  --primary: oklch(0.35 0.15 160); /* Darker emerald primary for better contrast */
+  --primary: oklch(50% 0.134 242.749); /* Darker emerald primary for better contrast */
   --primary-foreground: oklch(1 0 0); /* White text on primary */
-  --secondary: oklch(0.45 0.15 160); /* Darker emerald secondary for better contrast */
+  --secondary: oklch(74.6% 0.16 232.661); /* Darker emerald secondary for better contrast */
   --secondary-foreground: oklch(1 0 0); /* White text on secondary */
   --muted: oklch(0.97 0 0); /* Light gray muted background */
   --muted-foreground: oklch(0.35 0 0); /* Dark gray muted text */
-  --accent: oklch(0.65 0.15 160); /* Bright emerald accent */
+  --accent: oklch(74.6% 0.16 232.661); /* Bright emerald accent */
   --accent-foreground: oklch(1 0 0); /* White text on accent */
   --destructive: oklch(0.45 0.245 27.325); /* Darker red for better contrast */
   --destructive-foreground: oklch(1 0 0); /* White text on destructive background */
   --border: oklch(0.9 0 0); /* Light border (#e2e8f0) */
   --input: oklch(1 0 0); /* White input background */
-  --ring: oklch(0.65 0.15 160); /* Emerald focus ring */
+  --ring: oklch(95.1% 0.026 236.824); /* Emerald focus ring */
   --chart-1: oklch(0.45 0.15 160);
   --chart-2: oklch(0.65 0.15 160);
   --chart-3: oklch(0.398 0.07 227.392);
